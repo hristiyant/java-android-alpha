@@ -1,17 +1,19 @@
 package intermediate;
 
-import java.io.ByteArrayInputStream;
-import java.util.HashSet;
+import java.io.*;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class CorrectBrackets {
 	
 	private static void fakeInput() {
-		String input = "8";
+		String input = "6";
 		System.setIn(new ByteArrayInputStream(input.getBytes()));
 	}
 
-	static HashSet<String> brackets = new HashSet<>();
+	static LinkedHashSet<String> brackets = new LinkedHashSet<>();
 	
 	public static void main(String[] args) {
 		fakeInput();
@@ -22,15 +24,15 @@ public class CorrectBrackets {
 		
 		generateExpression(str, n);
 		
-		for (String string : brackets) {
+		 for (String string : brackets) {
 			System.out.println(string);
 		}
-
+		
 	}
 	
 	
 	
-	public static HashSet<String> generateExpression(String expression,int n){
+	public static LinkedHashSet<String> generateExpression(String expression,int n){
 		
 		if(expression.length() >= n) {
 			brackets.add(expression);
@@ -38,7 +40,7 @@ public class CorrectBrackets {
 			return brackets;
 		} 
 			
-		HashSet<String> currentBrackets =  generateExpression("(" + expression + ")", n);
+		LinkedHashSet<String> currentBrackets =  generateExpression("(" + expression + ")", n);
 		brackets.addAll(currentBrackets);
 		
 		currentBrackets =  generateExpression("()" + expression, n);
